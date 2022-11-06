@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/denstepanov/algostructs/algorithms"
+	algorithms "github.com/denstepanov/algostructs/algorithms/strings"
 	"github.com/denstepanov/algostructs/structures/linear/lists"
 	"github.com/denstepanov/algostructs/structures/linear/queues"
 	"github.com/denstepanov/algostructs/structures/linear/stacks"
@@ -15,6 +15,7 @@ func main() {
 	execLists()
 
 	execReverseString()
+	fmt.Printf("\nIs this word 'kazak' a polindrome? %v", algorithms.IsPalindrome("kazak"))
 }
 
 func execStacks() {
@@ -134,14 +135,12 @@ func execStacksQueue() {
 		fmt.Println(item)
 	}
 
-	fmt.Printf("Is stacksQueue empty? %t!", stacksQueue.IsEmpty())
+	fmt.Printf("\nIs stacksQueue empty? %t!", stacksQueue.IsEmpty())
 }
 
 func execReverseString() {
 	word := "Hello, World!"
 	fmt.Printf("\n Original string: %s", word)
-	word, err := algorithms.ReverseString(word)
-	if err == nil {
-		fmt.Printf("\n Reversed string: %s", word)
-	}
+	word = algorithms.ReverseString(word)
+	fmt.Printf("\n Reversed string: %s", word)
 }
