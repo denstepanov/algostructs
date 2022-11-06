@@ -16,7 +16,6 @@ func (q *SliceQueue[T]) Len() int {
 	return len(*q)
 }
 
-// Вставка элемента в начало.
 func (q *SliceQueue[T]) Enqueue(item T) {
 	newQueue := []T{item}
 	if !q.IsEmpty() {
@@ -25,7 +24,6 @@ func (q *SliceQueue[T]) Enqueue(item T) {
 	*q = newQueue
 }
 
-// Удаление элемента с конца.
 func (q *SliceQueue[T]) Dequeue() (item T, err error) {
 	if q.IsEmpty() {
 		err = errors.New(structures.EmptyQueue)
@@ -37,7 +35,6 @@ func (q *SliceQueue[T]) Dequeue() (item T, err error) {
 	return item, nil
 }
 
-// Возврат последнего элемента.
 func (q *SliceQueue[T]) Peek() (item T, err error) {
 	if q.IsEmpty() {
 		err = errors.New(structures.EmptyQueue)

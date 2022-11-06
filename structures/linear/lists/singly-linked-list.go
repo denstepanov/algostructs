@@ -1,14 +1,6 @@
 package lists
 
-// TODO: Протестить, устранить недостатки ниже.
-// привязка ноды к листу позволяет сразу понять, принадлежит ли эта нода к этому листу или нет.
-// вместо ошибок всё же лучше будет возвращать элемент или nil.
-// Во втором случае сразу станет понятно что что-то не так
-
 // Во всех for циклах видимо нужно установить l.size - 1?
-
-// как работать со списком, если в нодах могут храниться одинаковые значения?
-// как извлекать ноду со значением, которое может дублироваться в рамках всего списка?
 
 type SimplyLinkedNode struct {
 	Value any
@@ -123,7 +115,6 @@ func (l *SimplyLinkedList) InsertAfter(target, newNode *SimplyLinkedNode) *Simpl
 	return newNode
 }
 
-// TODO: Доработать все методы удаления
 func (l *SimplyLinkedList) DeleteHead() *SimplyLinkedNode {
 	if l.IsEmpty() {
 		return nil
@@ -151,25 +142,24 @@ func (l *SimplyLinkedList) DeleteTail() *SimplyLinkedNode {
 	}
 
 	node := l.head
-	isOnlyOneNode := l.head == l.tail
 	for i := 0; i < l.Len(); i++ {
-		if isOnlyOneNode {
-			node.list = nil
+		if l.isOnlyOneNode() {
+			l.head.list = nil
 			l.head = nil
 			l.tail = nil
 			break
 		} else if node.next == l.tail {
+			dt := l.tail
 			l.tail.list = nil
-			// каким-то образом сохранить значение удалённого хвоста и передать его в качестве результата.
 			l.tail = node
 			l.tail.next = nil
+			node = dt
 			break
 		}
 		node = node.next
 	}
 
 	l.len--
-	// Подумать, как можно взаимодействовать
 	return node
 }
 
@@ -180,19 +170,23 @@ func (l *SimplyLinkedList) Delete(target *SimplyLinkedNode) *SimplyLinkedNode {
 
 	node := l.head
 	for i := 0; i < l.Len(); i++ {
-		if target == node {
-			l.head = node.next
-			target.next = nil
-			target.list = l
+		if l.isOnlyOneNode() {
+			target.list = nil
+			l.head = nil
+			l.tail = nil
 			break
 		} else if target == node.next {
 			node.next = node.next.next
 			target.next = nil
-			target.list = l
+			target.list = nil
 			break
 		}
 		node = node.next
 	}
 	l.len--
 	return target
+}
+
+func (l *SimplyLinkedList) isOnlyOneNode() bool {
+	return l.len == 1
 }

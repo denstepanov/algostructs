@@ -1,7 +1,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 
 	"github.com/denstepanov/algostructs/algorithms"
@@ -14,21 +13,20 @@ func main() {
 	execQueues()
 
 	execReverseString()
-	list.New()
 }
 
 func execStacks() {
 	fmt.Println("this is stacks time!")
-	fmt.Println("\nStackViaSlice!")
-	var stackViaSlice stacks.StackViaSlice[string]
+	fmt.Println("\nSliceStack!")
+	var sliceStack stacks.SliceStack[string]
 
 	data := []string{"this", "is", "Sparta"}
 	for _, v := range data {
-		stackViaSlice.Push(v)
+		sliceStack.Push(v)
 	}
 
-	for len(stackViaSlice) > 0 {
-		x, err := stackViaSlice.Pop()
+	for len(sliceStack) > 0 {
+		x, err := sliceStack.Pop()
 		if err == nil {
 			fmt.Println(x)
 		}
@@ -37,46 +35,46 @@ func execStacks() {
 
 func execQueues() {
 	fmt.Println("\nThis is queue time!")
-	execQueueViaSlice()
-	execQueueViaStack()
+	execSliceQueue()
+	execStacksQueue()
 }
 
-func execQueueViaSlice() {
-	fmt.Println("\nQueueViaSlice")
-	var queueViaSlice queues.SliceQueue[int]
+func execSliceQueue() {
+	fmt.Println("\nSliceQueue!")
+	var sliceQueue queues.SliceQueue[int]
 	data := []int{3, 541, 300}
 	for _, v := range data {
-		queueViaSlice.Enqueue(v)
+		sliceQueue.Enqueue(v)
 	}
 
-	i, _ := queueViaSlice.Peek()
+	i, _ := sliceQueue.Peek()
 	fmt.Println(i)
 
-	for queueViaSlice.Len() > 0 {
-		item, _ := queueViaSlice.Dequeue()
+	for sliceQueue.Len() > 0 {
+		item, _ := sliceQueue.Dequeue()
 		fmt.Println(item)
 	}
 
-	fmt.Printf("Is queueViaSlice empty? %t!", queueViaSlice.IsEmpty())
+	fmt.Printf("Is sliceQueue empty? %t!", sliceQueue.IsEmpty())
 }
 
-func execQueueViaStack() {
+func execStacksQueue() {
 	fmt.Println("\nQueueViaStack")
-	var queueViaStacks queues.StacksQueue[int]
+	var stacksQueue queues.StacksQueue[int]
 	data := []int{117, 7234, 56}
 	for _, v := range data {
-		queueViaStacks.Enqueue(v)
+		stacksQueue.Enqueue(v)
 	}
 
-	i, _ := queueViaStacks.Peek()
+	i, _ := stacksQueue.Peek()
 	fmt.Println(i)
 
-	for queueViaStacks.Len() > 0 {
-		item, _ := queueViaStacks.Dequeue()
+	for stacksQueue.Len() > 0 {
+		item, _ := stacksQueue.Dequeue()
 		fmt.Println(item)
 	}
 
-	fmt.Printf("Is queueViaStacks empty? %t!", queueViaStacks.IsEmpty())
+	fmt.Printf("Is stacksQueue empty? %t!", stacksQueue.IsEmpty())
 }
 
 func execReverseString() {

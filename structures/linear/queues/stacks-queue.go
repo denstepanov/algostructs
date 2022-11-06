@@ -8,7 +8,7 @@ import (
 )
 
 type StacksQueue[T comparable] struct {
-	in, out stacks.StackViaSlice[T]
+	in, out stacks.SliceStack[T]
 }
 
 func (q *StacksQueue[T]) IsEmpty() bool {
@@ -19,7 +19,6 @@ func (q *StacksQueue[T]) Len() int {
 	return q.in.Len() + q.out.Len()
 }
 
-// Вставка элемента в начало.
 func (q *StacksQueue[T]) Enqueue(item T) {
 	if !q.out.IsEmpty() {
 		q.fromOutToIn()
@@ -27,7 +26,6 @@ func (q *StacksQueue[T]) Enqueue(item T) {
 	q.in.Push(item)
 }
 
-// Удаление элемента с конца.
 func (q *StacksQueue[T]) Dequeue() (item T, err error) {
 	if q.IsEmpty() {
 		err = errors.New(structures.EmptyQueue)
@@ -41,7 +39,6 @@ func (q *StacksQueue[T]) Dequeue() (item T, err error) {
 	return q.out.Pop()
 }
 
-// Возврат последнего элемента.
 func (q *StacksQueue[T]) Peek() (item T, err error) {
 	if q.IsEmpty() {
 		err = errors.New(structures.EmptyQueue)

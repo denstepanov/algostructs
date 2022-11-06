@@ -6,21 +6,21 @@ import (
 	"github.com/denstepanov/algostructs/structures"
 )
 
-type StackViaSlice[T comparable] []T
+type SliceStack[T comparable] []T
 
-func (s *StackViaSlice[T]) IsEmpty() bool {
+func (s *SliceStack[T]) IsEmpty() bool {
 	return len(*s) == 0
 }
 
-func (s *StackViaSlice[T]) Len() int {
+func (s *SliceStack[T]) Len() int {
 	return len(*s)
 }
 
-func (s *StackViaSlice[T]) Push(item T) {
+func (s *SliceStack[T]) Push(item T) {
 	*s = append(*s, item)
 }
 
-func (s *StackViaSlice[T]) Pop() (item T, err error) {
+func (s *SliceStack[T]) Pop() (item T, err error) {
 	if s.IsEmpty() {
 		err = errors.New(structures.EmptyStack)
 		return item, err
