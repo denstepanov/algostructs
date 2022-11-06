@@ -1,43 +1,43 @@
 package lists
 
-type SimplyLinkedNode[T comparable] struct {
+type SLNode[T comparable] struct {
 	Value T
-	next  *SimplyLinkedNode[T]
-	list  *SimplyLinkedList[T]
+	next  *SLNode[T]
+	list  *SLList[T]
 }
 
-type SimplyLinkedList[T comparable] struct {
-	head, tail *SimplyLinkedNode[T]
+type SLList[T comparable] struct {
+	head, tail *SLNode[T]
 	len        int
 }
 
-func NewSimplyLinkedList[T comparable]() *SimplyLinkedList[T] {
-	return new(SimplyLinkedList[T])
+func NewSLList[T comparable]() *SLList[T] {
+	return new(SLList[T])
 }
 
-func (l *SimplyLinkedList[T]) Len() int {
+func (l *SLList[T]) Len() int {
 	return l.len
 }
 
-func (l *SimplyLinkedList[T]) IsEmpty() bool {
+func (l *SLList[T]) IsEmpty() bool {
 	return l.Len() == 0
 }
 
-func (l *SimplyLinkedList[T]) Clear() {
+func (l *SLList[T]) Clear() {
 	l.head = nil
 	l.tail = nil
 	l.len = 0
 }
 
-func (l *SimplyLinkedList[T]) Head() *SimplyLinkedNode[T] {
+func (l *SLList[T]) Head() *SLNode[T] {
 	return l.head
 }
 
-func (l *SimplyLinkedList[T]) Tail() *SimplyLinkedNode[T] {
+func (l *SLList[T]) Tail() *SLNode[T] {
 	return l.tail
 }
 
-func (l *SimplyLinkedList[T]) ToSlice() []T {
+func (l *SLList[T]) ToSlice() []T {
 	if l.IsEmpty() {
 		return []T{}
 	}
@@ -51,7 +51,7 @@ func (l *SimplyLinkedList[T]) ToSlice() []T {
 	return result
 }
 
-func (l *SimplyLinkedList[T]) InsertHead(newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
+func (l *SLList[T]) InsertHead(newNode *SLNode[T]) *SLNode[T] {
 	newNode.next = l.Head()
 	newNode.list = l
 	l.head = newNode
@@ -64,7 +64,7 @@ func (l *SimplyLinkedList[T]) InsertHead(newNode *SimplyLinkedNode[T]) *SimplyLi
 	return newNode
 }
 
-func (l *SimplyLinkedList[T]) InsertTail(newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
+func (l *SLList[T]) InsertTail(newNode *SLNode[T]) *SLNode[T] {
 	newNode.list = l
 
 	if l.IsEmpty() {
@@ -78,7 +78,7 @@ func (l *SimplyLinkedList[T]) InsertTail(newNode *SimplyLinkedNode[T]) *SimplyLi
 	return newNode
 }
 
-func (l *SimplyLinkedList[T]) InsertBefore(target, newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
+func (l *SLList[T]) InsertBefore(target, newNode *SLNode[T]) *SLNode[T] {
 	if target.list != l {
 		return nil
 	}
@@ -107,7 +107,7 @@ func (l *SimplyLinkedList[T]) InsertBefore(target, newNode *SimplyLinkedNode[T])
 	return newNode
 }
 
-func (l *SimplyLinkedList[T]) InsertAfter(target, newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
+func (l *SLList[T]) InsertAfter(target, newNode *SLNode[T]) *SLNode[T] {
 	if target.list != l {
 		return nil
 	}
@@ -123,7 +123,7 @@ func (l *SimplyLinkedList[T]) InsertAfter(target, newNode *SimplyLinkedNode[T]) 
 	return newNode
 }
 
-func (l *SimplyLinkedList[T]) DeleteHead() *SimplyLinkedNode[T] {
+func (l *SLList[T]) DeleteHead() *SLNode[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -144,7 +144,7 @@ func (l *SimplyLinkedList[T]) DeleteHead() *SimplyLinkedNode[T] {
 	return node
 }
 
-func (l *SimplyLinkedList[T]) DeleteTail() *SimplyLinkedNode[T] {
+func (l *SLList[T]) DeleteTail() *SLNode[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -171,7 +171,7 @@ func (l *SimplyLinkedList[T]) DeleteTail() *SimplyLinkedNode[T] {
 	return node
 }
 
-func (l *SimplyLinkedList[T]) Delete(target *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
+func (l *SLList[T]) Delete(target *SLNode[T]) *SLNode[T] {
 	if target.list != l {
 		return nil
 	}
@@ -207,6 +207,6 @@ func (l *SimplyLinkedList[T]) Delete(target *SimplyLinkedNode[T]) *SimplyLinkedN
 	return target
 }
 
-func (l *SimplyLinkedList[T]) isOnlyOneNode() bool {
+func (l *SLList[T]) isOnlyOneNode() bool {
 	return l.len == 1
 }

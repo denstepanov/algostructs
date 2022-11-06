@@ -42,15 +42,19 @@ func execLists() {
 
 func execsll() {
 	fmt.Println("This is Simply Linked List")
-	sll := lists.NewSimplyLinkedList[string]()
+	sll := lists.NewSLList[string]()
 
 	fmt.Printf("Pointer to the sll: %p\n", sll)
-	head := &lists.SimplyLinkedNode[string]{Value: "Hello, World!"}
+	head := &lists.SLNode[string]{
+		Value: "Hello, World!",
+	}
 
 	sll.InsertHead(head)
 	fmt.Printf("Print head struct: %v\n", sll.Head())
 
-	tail := &lists.SimplyLinkedNode[string]{Value: "World, Hello!"}
+	tail := &lists.SLNode[string]{
+		Value: "World, Hello!",
+	}
 
 	sll.InsertTail(tail)
 	fmt.Printf("List length: %d\n", sll.Len())
@@ -73,7 +77,9 @@ func execsll() {
 	// sll.DeleteTail()
 	// fmt.Printf("Print head struct after delete previous tail: %v\n", sll.Tail())
 
-	newNode := &lists.SimplyLinkedNode[string]{Value: "Bb, Mars!!!"}
+	newNode := &lists.SLNode[string]{
+		Value: "Bb, Mars!!!",
+	}
 
 	// sll.InsertBefore(head, newNode)
 	// fmt.Printf("New head: %v\n", sll.Head())
