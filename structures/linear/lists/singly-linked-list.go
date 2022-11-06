@@ -1,52 +1,57 @@
 package lists
 
-// Во всех for циклах видимо нужно установить l.size - 1?
-
-type SimplyLinkedNode struct {
-	Value any
-	next  *SimplyLinkedNode
-	list  *SimplyLinkedList
+type SimplyLinkedNode[T comparable] struct {
+	Value T
+	next  *SimplyLinkedNode[T]
+	list  *SimplyLinkedList[T]
 }
 
-type SimplyLinkedList struct {
-	head, tail *SimplyLinkedNode
+type SimplyLinkedList[T comparable] struct {
+	head, tail *SimplyLinkedNode[T]
 	len        int
 }
 
-func New() *SimplyLinkedList {
-	return new(SimplyLinkedList)
+func NewSimplyLinkedList[T comparable]() *SimplyLinkedList[T] {
+	return new(SimplyLinkedList[T])
 }
 
-func (l *SimplyLinkedList) Len() int {
+func (l *SimplyLinkedList[T]) Len() int {
 	return l.len
 }
 
-func (l *SimplyLinkedList) IsEmpty() bool {
+func (l *SimplyLinkedList[T]) IsEmpty() bool {
 	return l.Len() == 0
 }
 
-func (l *SimplyLinkedList) Clear() {
-	// А если всё же висящие указатели не будут удаляться?
+func (l *SimplyLinkedList[T]) Clear() {
 	l.head = nil
 	l.tail = nil
 	l.len = 0
 }
 
-func (l *SimplyLinkedList) Head() *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) Head() *SimplyLinkedNode[T] {
 	return l.head
 }
 
-func (l *SimplyLinkedList) Tail() *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) Tail() *SimplyLinkedNode[T] {
 	return l.tail
 }
 
-// реализовать фунукцию вывода всего списка
+func (l *SimplyLinkedList[T]) ToSlice() []T {
+	if l.IsEmpty() {
+		return []T{}
+	}
 
-// функция поиска определённой ноды
+	result := []T{}
+	node := l.head
+	for i := 0; i < l.Len(); i++ {
+		result = append(result, node.Value)
+		node = node.next
+	}
+	return result
+}
 
-// Функция вставки значения внутрь определённой ноды
-
-func (l *SimplyLinkedList) InsertHead(newNode *SimplyLinkedNode) *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) InsertHead(newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
 	newNode.next = l.Head()
 	newNode.list = l
 	l.head = newNode
@@ -59,7 +64,7 @@ func (l *SimplyLinkedList) InsertHead(newNode *SimplyLinkedNode) *SimplyLinkedNo
 	return newNode
 }
 
-func (l *SimplyLinkedList) InsertTail(newNode *SimplyLinkedNode) *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) InsertTail(newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
 	newNode.list = l
 
 	if l.IsEmpty() {
@@ -73,7 +78,7 @@ func (l *SimplyLinkedList) InsertTail(newNode *SimplyLinkedNode) *SimplyLinkedNo
 	return newNode
 }
 
-func (l *SimplyLinkedList) InsertBefore(target, newNode *SimplyLinkedNode) *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) InsertBefore(target, newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
 	if target.list != l {
 		return nil
 	}
@@ -102,7 +107,7 @@ func (l *SimplyLinkedList) InsertBefore(target, newNode *SimplyLinkedNode) *Simp
 	return newNode
 }
 
-func (l *SimplyLinkedList) InsertAfter(target, newNode *SimplyLinkedNode) *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) InsertAfter(target, newNode *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
 	if target.list != l {
 		return nil
 	}
@@ -110,12 +115,15 @@ func (l *SimplyLinkedList) InsertAfter(target, newNode *SimplyLinkedNode) *Simpl
 	newNode.next = target.next
 	newNode.list = l
 	target.next = newNode
+	if newNode.next == nil {
+		l.tail = newNode
+	}
 	l.len++
 
 	return newNode
 }
 
-func (l *SimplyLinkedList) DeleteHead() *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) DeleteHead() *SimplyLinkedNode[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -136,7 +144,7 @@ func (l *SimplyLinkedList) DeleteHead() *SimplyLinkedNode {
 	return node
 }
 
-func (l *SimplyLinkedList) DeleteTail() *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) DeleteTail() *SimplyLinkedNode[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -163,30 +171,42 @@ func (l *SimplyLinkedList) DeleteTail() *SimplyLinkedNode {
 	return node
 }
 
-func (l *SimplyLinkedList) Delete(target *SimplyLinkedNode) *SimplyLinkedNode {
+func (l *SimplyLinkedList[T]) Delete(target *SimplyLinkedNode[T]) *SimplyLinkedNode[T] {
 	if target.list != l {
 		return nil
 	}
 
+	if l.isOnlyOneNode() {
+		l.Clear()
+		return target
+	}
+
+	if target == l.head {
+		l.head = l.head.next
+		target.next = nil
+		l.len--
+		return target
+	}
+
 	node := l.head
 	for i := 0; i < l.Len(); i++ {
-		if l.isOnlyOneNode() {
-			target.list = nil
-			l.head = nil
-			l.tail = nil
-			break
-		} else if target == node.next {
-			node.next = node.next.next
+		if target == node.next {
+			if node.next == l.tail {
+				l.tail = node
+			}
+			node.next = target.next
+
 			target.next = nil
 			target.list = nil
+			l.len--
 			break
 		}
 		node = node.next
 	}
-	l.len--
+
 	return target
 }
 
-func (l *SimplyLinkedList) isOnlyOneNode() bool {
+func (l *SimplyLinkedList[T]) isOnlyOneNode() bool {
 	return l.len == 1
 }
