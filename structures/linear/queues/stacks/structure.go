@@ -1,14 +1,11 @@
-package queues
+package stacks
 
 import (
-	"errors"
-
-	"github.com/denstepanov/algostructs/structures"
-	"github.com/denstepanov/algostructs/structures/linear/stacks"
+	"github.com/denstepanov/algostructs/structures/linear/stacks/slice"
 )
 
 type StacksQueue[T comparable] struct {
-	in, out stacks.SliceStack[T]
+	in, out slice.SliceStack[T]
 }
 
 func (q *StacksQueue[T]) IsEmpty() bool {
@@ -26,10 +23,9 @@ func (q *StacksQueue[T]) Enqueue(item T) {
 	q.in.Push(item)
 }
 
-func (q *StacksQueue[T]) Dequeue() (item T, err error) {
+func (q *StacksQueue[T]) Dequeue() (item T) {
 	if q.IsEmpty() {
-		err = errors.New(structures.EmptyQueue)
-		return item, err
+		return item
 	}
 
 	if q.in.Len() != 0 {
@@ -39,31 +35,30 @@ func (q *StacksQueue[T]) Dequeue() (item T, err error) {
 	return q.out.Pop()
 }
 
-func (q *StacksQueue[T]) Peek() (item T, err error) {
+func (q *StacksQueue[T]) Peek() (item T) {
 	if q.IsEmpty() {
-		err = errors.New(structures.EmptyQueue)
-		return item, err
+		return item
 	}
 
 	if q.in.Len() != 0 {
 		q.fromInToOut()
 	}
 
-	item, _ = q.out.Pop()
+	item = q.out.Pop()
 	q.out.Push(item)
-	return item, nil
+	return item
 }
 
 func (q *StacksQueue[T]) fromInToOut() {
 	for !q.in.IsEmpty() {
-		item, _ := q.in.Pop()
+		item := q.in.Pop()
 		q.out.Push(item)
 	}
 }
 
 func (q *StacksQueue[T]) fromOutToIn() {
 	for !q.out.IsEmpty() {
-		item, _ := q.out.Pop()
+		item := q.out.Pop()
 		q.in.Push(item)
 	}
 }

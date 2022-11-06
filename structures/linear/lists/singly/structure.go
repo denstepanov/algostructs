@@ -1,4 +1,4 @@
-package lists
+package singly
 
 type SLNode[T comparable] struct {
 	Value T

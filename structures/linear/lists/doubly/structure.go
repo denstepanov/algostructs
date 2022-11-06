@@ -1,4 +1,4 @@
-package lists
+package doubly
 
 type DLNode[T comparable] struct {
 	next, prev *DLNode[T]
@@ -172,7 +172,7 @@ func (l *DLList[T]) Delete(t *DLNode[T]) *DLNode[T] {
 		for i := 0; i < l.Len(); i++ {
 			if node.next == t {
 				node.next = t.next
-                node.next.prev = node
+				node.next.prev = node
 				clearNode(t)
 			}
 			node = node.next

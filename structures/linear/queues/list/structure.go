@@ -1,11 +1,11 @@
-package queues
+package list
 
 import (
-	"github.com/denstepanov/algostructs/structures/linear/lists"
+	"github.com/denstepanov/algostructs/structures/linear/lists/doubly"
 )
 
 type ListQueue[T comparable] struct {
-	list lists.DLList[T]
+	list doubly.DLList[T]
 }
 
 func (q *ListQueue[T]) IsEmpty() bool {
@@ -17,7 +17,7 @@ func (q *ListQueue[T]) Len() int {
 }
 
 func (q *ListQueue[T]) Enqueue(item *T) {
-	node := &lists.DLNode[T]{
+	node := &doubly.DLNode[T]{
 		Value: item,
 	}
 	q.list.InsertHead(node)

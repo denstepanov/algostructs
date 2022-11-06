@@ -1,4 +1,4 @@
-package queues
+package slice
 
 import (
 	"errors"

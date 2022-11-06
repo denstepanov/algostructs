@@ -1,10 +1,4 @@
-package stacks
-
-import (
-	"errors"
-
-	"github.com/denstepanov/algostructs/structures"
-)
+package slice
 
 type SliceStack[T comparable] []T
 
@@ -20,13 +14,12 @@ func (s *SliceStack[T]) Push(item T) {
 	*s = append(*s, item)
 }
 
-func (s *SliceStack[T]) Pop() (item T, err error) {
+func (s *SliceStack[T]) Pop() (item T) {
 	if s.IsEmpty() {
-		err = errors.New(structures.EmptyStack)
-		return item, err
+		return item
 	}
 	index := len(*s) - 1
 	item = (*s)[index]
 	*s = append([]T{}, (*s)[:index]...)
-	return item, nil
+	return item
 }
