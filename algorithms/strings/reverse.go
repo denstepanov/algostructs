@@ -1,34 +1,44 @@
 package algorithms
 
-func ReverseString(str string) string {
-	if str == "" {
-		return ""
-	}
+import "strings"
 
-	return string(reverse([]rune(str)))
+type runeOrString interface {
+	rune | string
 }
 
-func ReverseStringSlice(slc []string) []string {
-	if len(slc) == 0 {
-		return nil
-	}
-	return reverse(slc)
-}
-
-// Запилить более сложную версию определения палиндрома
 func IsPalindrome(str string) bool {
 	if str == "" {
-		return false
+		return true
 	}
 	reversed := ReverseString(str)
 	return str == reversed
 }
 
-type runesOrStrings interface {
-	rune | string
+func IsSliceOfStringPalindrome(slice []string) bool {
+	if len(slice) == 0 {
+		return true
+	}
+	reversedSlice := reverse(slice)
+	sliceAsString := strings.Join(slice, "")
+	reversedSliceAsString := strings.Join(reversedSlice, "")
+	return sliceAsString == reversedSliceAsString
 }
 
-func reverse[T runesOrStrings](slice []T) []T {
+func ReverseString(str string) string {
+	if str == "" {
+		return str
+	}
+	return string(reverse([]rune(str)))
+}
+
+func ReverseStringSlice(slc []string) []string {
+	if len(slc) == 0 {
+		return slc
+	}
+	return reverse(slc)
+}
+
+func reverse[T runeOrString](slice []T) []T {
 	for head, tail := 0, len(slice)-1; head < tail; head, tail = head+1, tail-1 {
 		slice[head], slice[tail] = slice[tail], slice[head]
 	}
