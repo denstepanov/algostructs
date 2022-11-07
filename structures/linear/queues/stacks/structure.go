@@ -8,6 +8,10 @@ type StacksQueue[T comparable] struct {
 	in, out slice.SliceStack[T]
 }
 
+func New[T comparable]() *StacksQueue[T] {
+	return new(StacksQueue[T])
+}
+
 func (q *StacksQueue[T]) IsEmpty() bool {
 	return q.in.Len() == 0 && q.out.Len() == 0
 }

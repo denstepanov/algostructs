@@ -8,6 +8,10 @@ type ListQueue[T comparable] struct {
 	list doubly.DLList[T]
 }
 
+func New[T comparable]() *ListQueue[T] {
+	return new(ListQueue[T])
+}
+
 func (q *ListQueue[T]) IsEmpty() bool {
 	return q.list.IsEmpty()
 }

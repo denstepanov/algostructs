@@ -8,6 +8,10 @@ import (
 
 type SliceQueue[T comparable] []T
 
+func New[T comparable]() *SliceQueue[T] {
+	return new(SliceQueue[T])
+}
+
 func (q *SliceQueue[T]) IsEmpty() bool {
 	return len(*q) == 0
 }
