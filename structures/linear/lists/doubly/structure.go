@@ -2,7 +2,7 @@ package doubly
 
 type DLNode[T comparable] struct {
 	next, prev *DLNode[T]
-	Value      *T
+	Value      T
 	list       *DLList[T]
 }
 
@@ -24,9 +24,17 @@ func (l *DLList[T]) IsEmpty() bool {
 }
 
 func (l *DLList[T]) Clear() {
-	l.head = nil
-	l.tail = nil
-	l.len = 0
+	if l.Len() > 0 {
+		node := l.head
+		for i := 0; i < l.Len(); i++ {
+			node.list = nil
+			node = node.next
+		}
+
+		l.head = nil
+		l.tail = nil
+		l.len = 0
+	}
 }
 
 func (l *DLList[T]) Head() *DLNode[T] {
@@ -37,14 +45,33 @@ func (l *DLList[T]) Tail() *DLNode[T] {
 	return l.tail
 }
 
-func (l *DLList[T]) Find(value T) *DLNode[T] {
-	var result *DLNode[T]
-	node := l.Head()
-	for i := 0; i < l.Len(); i++ {
-		if node.Value == &value {
-			result = node
+func (l *DLList[T]) FindByIndex(idx int) *DLNode[T] {
+	if l.Len()-1 < idx {
+		return nil
+	}
+
+	node := l.head
+	for i := 0; i < idx; i++ {
+		if i == idx {
 			break
 		}
+		node = node.next
+	}
+	return node
+}
+
+func (l *DLList[T]) FindByValue(value T) []*DLNode[T] {
+	result := []*DLNode[T]{}
+	if l.IsEmpty() {
+		return result
+	}
+
+	node := l.head
+	for i := 0; i < l.Len(); i++ {
+		if node.Value == value {
+			result = append(result, node)
+		}
+		node = node.next
 	}
 	return result
 }

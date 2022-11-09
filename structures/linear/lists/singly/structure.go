@@ -24,9 +24,17 @@ func (l *SLList[T]) IsEmpty() bool {
 }
 
 func (l *SLList[T]) Clear() {
-	l.head = nil
-	l.tail = nil
-	l.len = 0
+	if l.Len() > 0 {
+		node := l.head
+		for i := 0; i < l.Len(); i++ {
+			node.list = nil
+			node = node.next
+		}
+
+		l.head = nil
+		l.tail = nil
+		l.len = 0
+	}
 }
 
 func (l *SLList[T]) Head() *SLNode[T] {
@@ -37,15 +45,32 @@ func (l *SLList[T]) Tail() *SLNode[T] {
 	return l.tail
 }
 
-func (l *SLList[T]) ToSlice() []T {
-	if l.IsEmpty() {
-		return []T{}
+func (l *SLList[T]) FindByIndex(idx int) *SLNode[T] {
+	if l.Len()-1 < idx {
+		return nil
 	}
 
-	result := []T{}
+	node := l.head
+	for i := 0; i < idx; i++ {
+		if i == idx {
+			break
+		}
+		node = node.next
+	}
+	return node
+}
+
+func (l *SLList[T]) FindByValue(value T) []*SLNode[T] {
+	result := []*SLNode[T]{}
+	if l.IsEmpty() {
+		return result
+	}
+
 	node := l.head
 	for i := 0; i < l.Len(); i++ {
-		result = append(result, node.Value)
+		if node.Value == value {
+			result = append(result, node)
+		}
 		node = node.next
 	}
 	return result
@@ -85,25 +110,21 @@ func (l *SLList[T]) InsertBefore(target, newNode *SLNode[T]) *SLNode[T] {
 
 	node := l.Head()
 	for i := 0; i < l.Len(); i++ {
-		isHeadNodeEqual := i == 0 && node == target
-		isNextNodeEqual := node.next != nil && node.next == target
+		isHeadNodeEqual := l.head == target
+		isNextNodeEqual := node.next == target
 
 		if isHeadNodeEqual {
-			newNode.next = l.Head()
-			newNode.list = l
-			l.head = newNode
+			l.InsertHead(newNode)
 			break
 		} else if isNextNodeEqual {
 			newNode.next = node.next
 			newNode.list = l
 			node.next = newNode
+			l.len++
 			break
-		} else if node.next == nil {
-			return nil
 		}
 		node = node.next
 	}
-	l.len++
 	return newNode
 }
 
@@ -152,9 +173,7 @@ func (l *SLList[T]) DeleteTail() *SLNode[T] {
 	node := l.head
 	for i := 0; i < l.Len(); i++ {
 		if l.isOnlyOneNode() {
-			l.head.list = nil
-			l.head = nil
-			l.tail = nil
+			l.Clear()
 			break
 		} else if node.next == l.tail {
 			dt := l.tail
@@ -162,12 +181,11 @@ func (l *SLList[T]) DeleteTail() *SLNode[T] {
 			l.tail = node
 			l.tail.next = nil
 			node = dt
+			l.len--
 			break
 		}
 		node = node.next
 	}
-
-	l.len--
 	return node
 }
 
@@ -207,6 +225,19 @@ func (l *SLList[T]) Delete(target *SLNode[T]) *SLNode[T] {
 	return target
 }
 
+func (l *SLList[T]) ToSlice() []T {
+	result := []T{}
+	if !l.IsEmpty() {
+		node := l.head
+		for i := 0; i < l.Len(); i++ {
+			result = append(result, node.Value)
+			node = node.next
+		}
+	}
+
+	return result
+}
+
 func (l *SLList[T]) isOnlyOneNode() bool {
-	return l.len == 1
+	return l.Len() == 1
 }

@@ -1,23 +1,17 @@
 package slice
 
-import (
-	"errors"
-
-	"github.com/denstepanov/algostructs/structures"
-)
-
 type SliceQueue[T comparable] []T
 
 func New[T comparable]() *SliceQueue[T] {
 	return new(SliceQueue[T])
 }
 
-func (q *SliceQueue[T]) IsEmpty() bool {
-	return len(*q) == 0
-}
-
 func (q *SliceQueue[T]) Len() int {
 	return len(*q)
+}
+
+func (q *SliceQueue[T]) IsEmpty() bool {
+	return q.Len() == 0
 }
 
 func (q *SliceQueue[T]) Enqueue(item T) {
@@ -28,21 +22,20 @@ func (q *SliceQueue[T]) Enqueue(item T) {
 	*q = newQueue
 }
 
-func (q *SliceQueue[T]) Dequeue() (item T, err error) {
-	if q.IsEmpty() {
-		err = errors.New(structures.EmptyQueue)
-		return item, err
+func (q *SliceQueue[T]) Dequeue() T {
+	var result T
+	if !q.IsEmpty() {
+		index := len(*q) - 1
+		result = (*q)[index]
+		*q = append([]T{}, (*q)[:index]...)
 	}
-	index := len(*q) - 1
-	item = (*q)[index]
-	*q = append([]T{}, (*q)[:index]...)
-	return item, nil
+	return result
 }
 
-func (q *SliceQueue[T]) Peek() (item T, err error) {
-	if q.IsEmpty() {
-		err = errors.New(structures.EmptyQueue)
-		return item, err
+func (q *SliceQueue[T]) Peek() T {
+	var result T
+	if !q.IsEmpty() {
+		result = (*q)[len(*q)-1]
 	}
-	return (*q)[len(*q)-1], nil
+	return result
 }

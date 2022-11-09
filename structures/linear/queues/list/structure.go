@@ -20,27 +20,27 @@ func (q *ListQueue[T]) Len() int {
 	return q.list.Len()
 }
 
-func (q *ListQueue[T]) Enqueue(item *T) {
+func (q *ListQueue[T]) Enqueue(item T) {
 	node := &doubly.DLNode[T]{
 		Value: item,
 	}
 	q.list.InsertHead(node)
 }
 
-func (q *ListQueue[T]) Dequeue() *T {
-	if q.list.IsEmpty() {
-		return nil
+func (q *ListQueue[T]) Dequeue() T {
+	var result T
+	if !q.list.IsEmpty() {
+		result = q.list.DeleteTail().Value
 	}
-
-	return q.list.DeleteTail().Value
+	return result
 }
 
-func (q *ListQueue[T]) Peek() *T {
-	if q.list.IsEmpty() {
-		return nil
+func (q *ListQueue[T]) Peek() T {
+	var result T
+	if !q.list.IsEmpty() {
+		tail := q.list.DeleteTail()
+		q.list.InsertTail(tail)
+		result = tail.Value
 	}
-
-	tail := q.list.DeleteTail()
-	q.list.InsertTail(tail)
-	return tail.Value
+	return result
 }

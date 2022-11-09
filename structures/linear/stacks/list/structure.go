@@ -16,15 +16,15 @@ func (s *ListStack[T]) Len() int {
 
 func (s *ListStack[T]) Push(item T) {
 	node := &doubly.DLNode[T]{
-		Value: &item,
+		Value: item,
 	}
 	s.list.InsertTail(node)
 }
 
-func (s *ListStack[T]) Pop() (item T) {
-	if s.list.IsEmpty() {
-		return item
+func (s *ListStack[T]) Pop() T {
+	var result T
+	if !s.list.IsEmpty() {
+		result = s.list.DeleteTail().Value
 	}
-
-	return *s.list.DeleteTail().Value
+	return result
 }
