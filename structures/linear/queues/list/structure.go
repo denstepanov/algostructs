@@ -5,7 +5,7 @@ import (
 )
 
 type ListQueue[T comparable] struct {
-	list doubly.DLList[T]
+	list doubly.List[T]
 }
 
 func New[T comparable]() *ListQueue[T] {
@@ -21,7 +21,7 @@ func (q *ListQueue[T]) Len() int {
 }
 
 func (q *ListQueue[T]) Enqueue(item T) {
-	node := &doubly.DLNode[T]{
+	node := &doubly.Node[T]{
 		Value: item,
 	}
 	q.list.InsertHead(node)

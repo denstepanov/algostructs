@@ -1,29 +1,35 @@
 package doubly
 
-type DLNode[T comparable] struct {
-	next, prev *DLNode[T]
+type Node[T comparable] struct {
+	next, prev *Node[T]
 	Value      T
-	list       *DLList[T]
+	list       *List[T]
 }
 
-type DLList[T comparable] struct {
-	head, tail *DLNode[T]
+func (n *Node[T]) clearNode() {
+	n.list = nil
+	n.next = nil
+	n.prev = nil
+}
+
+type List[T comparable] struct {
+	head, tail *Node[T]
 	len        int
 }
 
-func NewDLList[T comparable]() *DLList[T] {
-	return new(DLList[T])
+func New[T comparable]() *List[T] {
+	return new(List[T])
 }
 
-func (l *DLList[T]) Len() int {
+func (l *List[T]) Len() int {
 	return l.len
 }
 
-func (l *DLList[T]) IsEmpty() bool {
+func (l *List[T]) IsEmpty() bool {
 	return l.Len() == 0
 }
 
-func (l *DLList[T]) Clear() {
+func (l *List[T]) Clear() {
 	if l.Len() > 0 {
 		node := l.head
 		for i := 0; i < l.Len(); i++ {
@@ -37,15 +43,15 @@ func (l *DLList[T]) Clear() {
 	}
 }
 
-func (l *DLList[T]) Head() *DLNode[T] {
+func (l *List[T]) Head() *Node[T] {
 	return l.head
 }
 
-func (l *DLList[T]) Tail() *DLNode[T] {
+func (l *List[T]) Tail() *Node[T] {
 	return l.tail
 }
 
-func (l *DLList[T]) FindByIndex(idx int) *DLNode[T] {
+func (l *List[T]) FindByIndex(idx int) *Node[T] {
 	if l.Len()-1 < idx {
 		return nil
 	}
@@ -60,8 +66,8 @@ func (l *DLList[T]) FindByIndex(idx int) *DLNode[T] {
 	return node
 }
 
-func (l *DLList[T]) FindByValue(value T) []*DLNode[T] {
-	result := []*DLNode[T]{}
+func (l *List[T]) FindByValue(value T) []*Node[T] {
+	result := []*Node[T]{}
 	if l.IsEmpty() {
 		return result
 	}
@@ -76,7 +82,7 @@ func (l *DLList[T]) FindByValue(value T) []*DLNode[T] {
 	return result
 }
 
-func (l *DLList[T]) InsertHead(nn *DLNode[T]) *DLNode[T] {
+func (l *List[T]) InsertHead(nn *Node[T]) *Node[T] {
 	if l.IsEmpty() {
 		l.tail = nn
 	} else {
@@ -89,7 +95,7 @@ func (l *DLList[T]) InsertHead(nn *DLNode[T]) *DLNode[T] {
 	return nn
 }
 
-func (l *DLList[T]) InsertTail(nn *DLNode[T]) *DLNode[T] {
+func (l *List[T]) InsertTail(nn *Node[T]) *Node[T] {
 	if l.IsEmpty() {
 		l.head = nn
 	} else {
@@ -102,7 +108,7 @@ func (l *DLList[T]) InsertTail(nn *DLNode[T]) *DLNode[T] {
 	return nn
 }
 
-func (l *DLList[T]) InsertBefore(t, nn *DLNode[T]) *DLNode[T] {
+func (l *List[T]) InsertBefore(t, nn *Node[T]) *Node[T] {
 	if t.list != l {
 		return nil
 	}
@@ -119,7 +125,7 @@ func (l *DLList[T]) InsertBefore(t, nn *DLNode[T]) *DLNode[T] {
 	return nn
 }
 
-func (l *DLList[T]) InsertAfter(t, nn *DLNode[T]) *DLNode[T] {
+func (l *List[T]) InsertAfter(t, nn *Node[T]) *Node[T] {
 	if t.list != l {
 		return nil
 	}
@@ -137,7 +143,7 @@ func (l *DLList[T]) InsertAfter(t, nn *DLNode[T]) *DLNode[T] {
 	return nn
 }
 
-func (l *DLList[T]) DeleteHead() *DLNode[T] {
+func (l *List[T]) DeleteHead() *Node[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -154,7 +160,7 @@ func (l *DLList[T]) DeleteHead() *DLNode[T] {
 	return node
 }
 
-func (l *DLList[T]) DeleteTail() *DLNode[T] {
+func (l *List[T]) DeleteTail() *Node[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -171,7 +177,7 @@ func (l *DLList[T]) DeleteTail() *DLNode[T] {
 	return node
 }
 
-func (l *DLList[T]) Delete(t *DLNode[T]) *DLNode[T] {
+func (l *List[T]) Delete(t *Node[T]) *Node[T] {
 	if t.list != l {
 		return nil
 	}
@@ -185,12 +191,12 @@ func (l *DLList[T]) Delete(t *DLNode[T]) *DLNode[T] {
 	} else if t.prev == l.Head() {
 		l.head.next = t.next
 		l.head.next.prev = l.head // обратная ссылка нового элемента, следующего за head.
-		clearNode(t)
+		t.clearNode()
 		l.len--
 	} else if t.next == l.Tail() {
 		l.tail.prev = t.prev
 		l.tail.prev.next = l.tail
-		clearNode(t)
+		t.clearNode()
 		l.len--
 	} else {
 		// Сценарий удаления элемента где-то в середине списка.
@@ -200,7 +206,7 @@ func (l *DLList[T]) Delete(t *DLNode[T]) *DLNode[T] {
 			if node.next == t {
 				node.next = t.next
 				node.next.prev = node
-				clearNode(t)
+				t.clearNode()
 			}
 			node = node.next
 		}
@@ -209,8 +215,15 @@ func (l *DLList[T]) Delete(t *DLNode[T]) *DLNode[T] {
 	return t
 }
 
-func clearNode[T comparable](node *DLNode[T]) {
-	node.list = nil
-	node.next = nil
-	node.prev = nil
+func (l *List[T]) ToSlice() []T {
+	result := []T{}
+	if !l.IsEmpty() {
+		node := l.head
+		for i := 0; i < l.Len(); i++ {
+			result = append(result, node.Value)
+			node = node.next
+		}
+	}
+
+	return result
 }

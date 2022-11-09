@@ -13,9 +13,9 @@ import (
 // - удаления элементов из середины списка
 var list = prepare()
 
-func prepare() *singly.SLList[string] {
-	newList := singly.NewSLList[string]()
-	data := []singly.SLNode[string]{
+func prepare() *singly.List[string] {
+	newList := singly.New[string]()
+	data := []singly.Node[string]{
 		{
 			Value: "Hello",
 		},
@@ -38,7 +38,6 @@ func prepare() *singly.SLList[string] {
 }
 
 func TestFindByIndex(t *testing.T) {
-	fmt.Printf("list before find: %v", list.ToSlice())
 	node := list.FindByIndex(3)
 
 	if node != list.Tail() {
@@ -48,10 +47,6 @@ func TestFindByIndex(t *testing.T) {
 
 func TestFindByValue(t *testing.T) {
 	nodes := list.FindByValue("Mars")
-	slc := list.ToSlice()
-	if len(slc) == 0 {
-
-	}
 
 	if nodes[0] != list.Tail() {
 		t.Fatal(fmt.Printf("SLList.FindByValue() %s", structures.MethodNotWorking))
@@ -84,19 +79,19 @@ func TestToSlice(t *testing.T) {
 func TestInsertHead(t *testing.T) {
 	oldLen := list.Len()
 	value := "TestInsertHead"
-	newNode := &singly.SLNode[string]{Value: value}
+	newNode := &singly.Node[string]{Value: value}
 	newNode = list.InsertHead(newNode)
 
 	if oldLen == list.Len() || newNode == nil {
-		t.Fatal("SSList.InsertHead(): new node isn't inserted")
+		t.Fatal("SLList.InsertHead(): new node isn't inserted")
 	}
 	if newNode.Value != value {
-		t.Fatal("SSList.InsertHead(): value doesn't match")
+		t.Fatal("SLList.InsertHead(): value doesn't match")
 	}
 }
 
 func TestInsertBeforeHead(t *testing.T) {
-	newNode := &singly.SLNode[string]{Value: "TestInsertBeforeHead"}
+	newNode := &singly.Node[string]{Value: "TestInsertBeforeHead"}
 	newNode = list.InsertBefore(list.Head(), newNode)
 
 	if newNode != list.Head() {
@@ -106,7 +101,7 @@ func TestInsertBeforeHead(t *testing.T) {
 
 func TestInsertBefore(t *testing.T) {
 	oldLen := list.Len()
-	newNode := &singly.SLNode[string]{Value: "TestInsertBefore"}
+	newNode := &singly.Node[string]{Value: "TestInsertBefore"}
 	newNode = list.InsertBefore(list.Tail(), newNode)
 
 	if list.Len() == oldLen {
@@ -116,7 +111,7 @@ func TestInsertBefore(t *testing.T) {
 
 func TestInsertAfter(t *testing.T) {
 	oldLen := list.Len()
-	newNode := &singly.SLNode[string]{Value: "TestInsertAfter"}
+	newNode := &singly.Node[string]{Value: "TestInsertAfter"}
 	newNode = list.InsertAfter(list.Tail(), newNode)
 
 	if list.Len() == oldLen {
@@ -125,7 +120,7 @@ func TestInsertAfter(t *testing.T) {
 }
 
 func TestInsertAfterTail(t *testing.T) {
-	newNode := &singly.SLNode[string]{Value: "TestInsertAfter"}
+	newNode := &singly.Node[string]{Value: "TestInsertAfter"}
 	newNode = list.InsertAfter(list.Tail(), newNode)
 
 	if list.Tail() != newNode {

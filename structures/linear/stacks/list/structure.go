@@ -3,7 +3,7 @@ package list
 import "github.com/denstepanov/algostructs/structures/linear/lists/doubly"
 
 type ListStack[T comparable] struct {
-	list doubly.DLList[T]
+	list doubly.List[T]
 }
 
 func (s *ListStack[T]) IsEmpty() bool {
@@ -15,7 +15,7 @@ func (s *ListStack[T]) Len() int {
 }
 
 func (s *ListStack[T]) Push(item T) {
-	node := &doubly.DLNode[T]{
+	node := &doubly.Node[T]{
 		Value: item,
 	}
 	s.list.InsertTail(node)
