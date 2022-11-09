@@ -62,16 +62,14 @@ func (l *SLList[T]) FindByIndex(idx int) *SLNode[T] {
 
 func (l *SLList[T]) FindByValue(value T) []*SLNode[T] {
 	result := []*SLNode[T]{}
-	if l.IsEmpty() {
-		return result
-	}
-
-	node := l.head
-	for i := 0; i < l.Len(); i++ {
-		if node.Value == value {
-			result = append(result, node)
+	if !l.IsEmpty() {
+		node := l.head
+		for i := 0; i <= l.len-1; i++ {
+			if node.Value == value {
+				result = append(result, node)
+			}
+			node = node.next
 		}
-		node = node.next
 	}
 	return result
 }

@@ -23,16 +23,39 @@ func prepare() *singly.SLList[string] {
 			Value: "World",
 		},
 		{
-			Value: "Mars",
-		},
-		{
 			Value: "Bye",
 		},
+		{
+			Value: "Mars",
+		},
 	}
-	for _, v := range data {
-		newList.InsertTail(&v)
+
+	for i := 0; i < len(data); i++ {
+		newList.InsertTail(&data[i])
 	}
+
 	return newList
+}
+
+func TestFindByIndex(t *testing.T) {
+	fmt.Printf("list before find: %v", list.ToSlice())
+	node := list.FindByIndex(3)
+
+	if node != list.Tail() {
+		t.Fatal(fmt.Printf("SLList.FindByIndex() %s", structures.MethodNotWorking))
+	}
+}
+
+func TestFindByValue(t *testing.T) {
+	nodes := list.FindByValue("Mars")
+	slc := list.ToSlice()
+	if len(slc) == 0 {
+
+	}
+
+	if nodes[0] != list.Tail() {
+		t.Fatal(fmt.Printf("SLList.FindByValue() %s", structures.MethodNotWorking))
+	}
 }
 
 func TestInsertTail(t *testing.T) {
