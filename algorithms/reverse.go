@@ -1,6 +1,8 @@
 package algorithms
 
-import "strings"
+import (
+	"strings"
+)
 
 type runeOrString interface {
 	rune | string

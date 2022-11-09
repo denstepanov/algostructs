@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	algorithms "github.com/denstepanov/algostructs/algorithms/strings"
+	"github.com/denstepanov/algostructs/algorithms"
 )
 
 func main() {
 	reverseString()
 	reverseSlice()
-	fmt.Printf("\nIs this word 'kazak' a polindrome? %v", algorithms.IsPalindrome("kazak"))
+	isPalindrome()
 }
 
 func reverseString() {
@@ -24,4 +24,9 @@ func reverseSlice() {
 	fmt.Printf("\nOriginal slice: %s", slice)
 	slice = algorithms.ReverseStringSlice(slice)
 	fmt.Printf("\nReversed slice: %s", slice)
+}
+
+func isPalindrome() {
+	word := "kazak"
+	fmt.Printf("\nIs this word '%s' a polindrome? %v", word, algorithms.IsPalindrome("kazak"))
 }

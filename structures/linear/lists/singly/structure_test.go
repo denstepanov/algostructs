@@ -146,3 +146,13 @@ func TestDeleteTail(t *testing.T) {
 
 func TestDelete(t *testing.T) {
 }
+
+func TestReverse(t *testing.T) {
+	oldHead := list.Head()
+	oldTail := list.Tail()
+	list.Reverse()
+
+	if list.Head() != oldTail && list.Tail() != oldHead {
+		t.Fatal(fmt.Printf("SLList.Reverse() %s", structures.MethodNotWorking))
+	}
+}

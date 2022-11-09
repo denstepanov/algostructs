@@ -226,6 +226,26 @@ func (l *List[T]) Delete(target *Node[T]) *Node[T] {
 	return target
 }
 
+func (l *List[T]) Reverse() {
+	if !l.IsEmpty() {
+		next := l.head.next
+		current := l.head
+		var prev *Node[T] = nil
+		for current != nil {
+			current.next = prev
+			if prev == nil {
+				l.tail = current
+			}
+			current = next
+			if next != nil {
+				next = next.next
+			}
+			prev = current
+		}
+		l.head = prev
+	}
+}
+
 func (l *List[T]) ToSlice() []T {
 	result := []T{}
 	if !l.IsEmpty() {
