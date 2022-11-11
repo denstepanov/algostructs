@@ -9,7 +9,7 @@ import (
 func main() {
 	reverseString()
 	reverseSlice()
-	isPalindrome()
+	isPalindrome("kazak")
 }
 
 func reverseString() {
@@ -26,7 +26,6 @@ func reverseSlice() {
 	fmt.Printf("\nReversed slice: %s", slice)
 }
 
-func isPalindrome() {
-	word := "kazak"
+func isPalindrome(word string) {
 	fmt.Printf("\nIs this word '%s' a polindrome? %v", word, algorithms.IsPalindrome("kazak"))
 }
