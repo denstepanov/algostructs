@@ -4,10 +4,6 @@ package cocktail
 // Лучший вариант O(n). Срез отсортирован.
 // Худший случай O(n^2). Срез обратно отсортирован.
 func Sort(s []int) {
-	if len(s) <= 1 {
-		return
-	}
-
 	start := 0
 	end := len(s) - 1
 	for start < end {

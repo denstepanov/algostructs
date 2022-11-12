@@ -3,11 +3,7 @@ package bubble
 // Лучший случай: O(n). Последовательность уже упорядочена.
 // Средний случай: O(n^2).
 // Худший случай: O(n^2). Последовательность обратно упорядочена.
-func Sort(s []int) ([]int, int) {
-	if len(s) <= 1 {
-		return s, 0
-	}
-
+func Sort(s []int) {
 	end := len(s) - 1
 	var tries int
 	for tries = 1; tries < len(s); tries++ {
@@ -24,5 +20,4 @@ func Sort(s []int) ([]int, int) {
 			break
 		}
 	}
-	return s, tries
 }

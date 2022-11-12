@@ -1,19 +1,19 @@
-package bubble_test
+package merge_test
 
 import (
 	"testing"
 
 	"github.com/denstepanov/algostructs/algorithms"
-	"github.com/denstepanov/algostructs/algorithms/sorts/bubble"
+	"github.com/denstepanov/algostructs/algorithms/sorts/merge"
 )
 
 func TestDisorderedSlice(t *testing.T) {
-	ordered := algorithms.GenOrderedSlice(200)
+	ordered := algorithms.GenOrderedSlice(10000)
 	slice := algorithms.GenStirredSlice(ordered)
 
-	bubble.Sort(slice)
+	merge.Sort(slice)
 
 	if !algorithms.SlicesAreEqual(ordered, slice) {
-		t.Fatal("Bubble sort doesn't work correctly.")
+		t.Fatal("Merge sort doesn't work correctly.")
 	}
 }

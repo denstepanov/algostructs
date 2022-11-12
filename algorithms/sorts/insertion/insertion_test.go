@@ -1,19 +1,19 @@
-package bubble_test
+package insertion_test
 
 import (
 	"testing"
 
 	"github.com/denstepanov/algostructs/algorithms"
-	"github.com/denstepanov/algostructs/algorithms/sorts/bubble"
+	"github.com/denstepanov/algostructs/algorithms/sorts/insertion"
 )
 
 func TestDisorderedSlice(t *testing.T) {
 	ordered := algorithms.GenOrderedSlice(200)
 	slice := algorithms.GenStirredSlice(ordered)
 
-	bubble.Sort(slice)
+	insertion.Sort(slice)
 
 	if !algorithms.SlicesAreEqual(ordered, slice) {
-		t.Fatal("Bubble sort doesn't work correctly.")
+		t.Fatal("Insertion sort doesn't work correctly.")
 	}
 }

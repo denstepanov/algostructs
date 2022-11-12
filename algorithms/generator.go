@@ -6,7 +6,6 @@ import (
 )
 
 func GenStirredSlice(s []int) []int {
-	// Инициализация генератора. Нулевое значение 1.
 	rand.Seed(time.Now().UnixNano())
 	result := make([]int, len(s))
 	copy(result, s)

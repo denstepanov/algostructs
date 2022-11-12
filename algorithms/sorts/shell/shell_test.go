@@ -1,19 +1,19 @@
-package bubble_test
+package shell_test
 
 import (
 	"testing"
 
 	"github.com/denstepanov/algostructs/algorithms"
-	"github.com/denstepanov/algostructs/algorithms/sorts/bubble"
+	"github.com/denstepanov/algostructs/algorithms/sorts/shell"
 )
 
 func TestDisorderedSlice(t *testing.T) {
 	ordered := algorithms.GenOrderedSlice(200)
 	slice := algorithms.GenStirredSlice(ordered)
 
-	bubble.Sort(slice)
+	shell.Sort(slice)
 
 	if !algorithms.SlicesAreEqual(ordered, slice) {
-		t.Fatal("Bubble sort doesn't work correctly.")
+		t.Fatal("Shell sort doesn't work correctly.")
 	}
 }
