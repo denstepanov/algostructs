@@ -8,7 +8,7 @@ import (
 )
 
 func TestDisorderedSlice(t *testing.T) {
-	ordered := algorithms.GenOrderedSlice(200)
+	ordered := algorithms.GenOrderedSlice(10000)
 	slice := algorithms.GenStirredSlice(ordered)
 
 	shell.Sort(slice)
