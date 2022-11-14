@@ -11,15 +11,15 @@ func Sort(s []int, low, high int) {
 }
 
 func partition(s []int, low, high int) int {
-	pivot := high
+	pivot := high // индекс элемента-разделителя.
 
-	pointer := low
+	pointer := low // позиция для элемента разделителя.
 	for i := low; i < high; i++ {
 		if s[i] < s[pivot] {
 			s[pointer], s[i] = s[i], s[pointer]
 			pointer++
 		}
 	}
-	s[pointer], s[high] = s[high], s[pointer]
+	s[pointer], s[pivot] = s[pivot], s[pointer]
 	return pointer
 }
