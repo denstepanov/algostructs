@@ -1,5 +1,6 @@
 package selection
 
+// Во всех случаях O(n^2)
 func Sort(s []int) {
 	for start := 0; start < len(s)-1; start++ {
 		minValueIndex := start

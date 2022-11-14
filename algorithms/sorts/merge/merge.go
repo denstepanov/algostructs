@@ -1,5 +1,6 @@
 package merge
 
+// Во всех случаях O(n log n)
 func Sort(s []int) {
 	sorted := sort(s)
 	for i := range s {
