@@ -1,3 +1,3 @@
 # algostructs
 
-Проект-полигон для работы со структурами данных и алгоритмами.
+Playground, which contains algorithms, structures and other solves of problems.

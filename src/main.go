@@ -5,8 +5,7 @@ import (
 )
 
 func main() {
-	// TODO: Когда вызовов функций будет слишком много, Упаковать их в группирующие функции, например, runSorts.
-	utils.ReverseString()
-	utils.ReverseSlice()
-	utils.IsPalindrome("kazak")
+	utils.RunReverseString("Hello World!")
+	utils.RunReverseSlice([]string{"Hello", ",", "World", "!"})
+	utils.RunIsPalindrome("kayak")
 }

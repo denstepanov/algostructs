@@ -1,4 +1,4 @@
-package utils
+package reverse
 
 import (
 	"strings"
@@ -8,15 +8,15 @@ type runeOrString interface {
 	rune | string
 }
 
-func isPalindrome(str string) bool {
+func IsPalindrome(str string) bool {
 	if str == "" {
 		return true
 	}
-	reversed := reverseString(str)
+	reversed := ReverseString(str)
 	return str == reversed
 }
 
-func isSliceOfStringPalindrome(slice []string) bool {
+func IsSliceOfStringPalindrome(slice []string) bool {
 	if len(slice) == 0 {
 		return true
 	}
@@ -26,14 +26,14 @@ func isSliceOfStringPalindrome(slice []string) bool {
 	return sliceAsString == reversedSliceAsString
 }
 
-func reverseString(str string) string {
+func ReverseString(str string) string {
 	if str == "" {
 		return str
 	}
 	return string(reverse([]rune(str)))
 }
 
-func reverseStringSlice(slc []string) []string {
+func ReverseSliceOfStrings(slc []string) []string {
 	if len(slc) == 0 {
 		return slc
 	}

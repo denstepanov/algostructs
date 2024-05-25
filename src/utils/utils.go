@@ -1,21 +1,22 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/denstepanov/algostructs/src/utils/reverse"
+)
 
-func IsPalindrome(word string) {
-	fmt.Printf("\nIs this word '%s' a polindrome? %v", word, isPalindrome("kazak"))
+func RunIsPalindrome(word string) {
+	fmt.Printf("\nIs this word '%s' a polindrome? %v", word, reverse.IsPalindrome(word))
 }
 
-func ReverseString() {
-	word := "Hello, World!"
+func RunReverseString(word string) {
 	fmt.Printf("\n Original string: %s", word)
-	word = reverseString(word)
+	word = reverse.ReverseString(word)
 	fmt.Printf("\n Reversed string: %s", word)
 }
 
-func ReverseSlice() {
-	slice := []string{"Hello", ",", "World", "!"}
+func RunReverseSlice(slice []string) {
 	fmt.Printf("\nOriginal slice: %s", slice)
-	slice = reverseStringSlice(slice)
+	slice = reverse.ReverseSliceOfStrings(slice)
 	fmt.Printf("\nReversed slice: %s", slice)
 }
