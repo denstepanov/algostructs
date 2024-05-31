@@ -8,5 +8,5 @@ import (
 )
 
 func TestDisorderedSlice(t *testing.T) {
-	test.TestSort("Shell", shell.Sort, t)
+	test.Sort("Shell", shell.Sort, t)
 }

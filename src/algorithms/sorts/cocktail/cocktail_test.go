@@ -7,5 +7,5 @@ import (
 )
 
 func TestCocktailSort(t *testing.T) {
-	test.TestSort("Cocktail", cocktail.Sort, t)
+	test.Sort("Cocktail", cocktail.Sort, t)
 }

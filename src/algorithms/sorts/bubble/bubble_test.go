@@ -8,5 +8,5 @@ import (
 )
 
 func TestBubbleSort(t *testing.T) {
-	test.TestSort("Bubble", bubble.Sort, t)
+	test.Sort("Bubble", bubble.Sort, t)
 }

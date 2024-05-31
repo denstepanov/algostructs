@@ -8,5 +8,5 @@ import (
 )
 
 func TestMergeSort(t *testing.T) {
-	test.TestSort("Merge", merge.Sort, t)
+	test.Sort("Merge", merge.Sort, t)
 }

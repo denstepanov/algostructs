@@ -8,5 +8,5 @@ import (
 )
 
 func TestSelectionSort(t *testing.T) {
-	test.TestSort("Selection", selection.Sort, t)
+	test.Sort("Selection", selection.Sort, t)
 }

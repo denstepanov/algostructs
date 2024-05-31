@@ -7,5 +7,5 @@ import (
 )
 
 func TestInsertionSort(t *testing.T) {
-	test.TestSort("Insertion", insertion.Sort, t)
+	test.Sort("Insertion", insertion.Sort, t)
 }

@@ -1,4 +1,4 @@
-package comparsion
+package utils
 
 func SlicesAreEqual[T comparable](a, b []T) bool {
 	result := true

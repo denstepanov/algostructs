@@ -6,19 +6,19 @@ import (
 )
 
 func GenStirredSlice(s []int) []int {
-	rand.Seed(time.Now().UnixNano())
-	result := make([]int, len(s))
-	copy(result, s)
-	rand.Shuffle(len(result), func(i, j int) {
-		result[i], result[j] = result[j], result[i]
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+	list := make([]int, len(s))
+	copy(list, s)
+	rand.Shuffle(len(list), func(i, j int) {
+		list[i], list[j] = list[j], list[i]
 	})
-	return result
+	return list
 }
 
 func GenOrderedSlice(size int) []int {
-	ints := make([]int, size)
+	list := make([]int, size)
 	for i := 0; i < size; i++ {
-		ints[i] = i
+		list[i] = i
 	}
-	return ints
+	return list
 }
