@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func GenStirredSlice(s []int) []int {
+func ShuffleSlice(s []int) []int {
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 	list := make([]int, len(s))
 	copy(list, s)
@@ -15,7 +15,7 @@ func GenStirredSlice(s []int) []int {
 	return list
 }
 
-func GenOrderedSlice(size int) []int {
+func GenerateOrderedSlice(size int) []int {
 	list := make([]int, size)
 	for i := 0; i < size; i++ {
 		list[i] = i

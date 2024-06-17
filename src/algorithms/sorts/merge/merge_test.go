@@ -7,6 +7,16 @@ import (
 	"github.com/denstepanov/algostructs/src/algorithms/sorts/merge"
 )
 
-func TestMergeSort(t *testing.T) {
-	test.Sort("Merge", merge.Sort, t)
+const sortType = "Merge"
+
+func TestMergeSortWith10kElements(t *testing.T) {
+	test.Sort(sortType, 10000, merge.Sort, t)
+}
+
+func TestMergeSortWithOneElement(t *testing.T) {
+	test.Sort(sortType, 10000, merge.Sort, t)
+}
+
+func TestMergeSortWithZeroElements(t *testing.T) {
+	test.Sort(sortType, 10000, merge.Sort, t)
 }

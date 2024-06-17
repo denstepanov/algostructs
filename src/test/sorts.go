@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func Sort(name string, sort func([]int), t *testing.T) {
-	slice := createIntSlice()
+func Sort(name string, sliceSize int, sort func([]int), t *testing.T) {
+	slice := createIntSlice(sliceSize)
 	sort(slice.Disordered)
 
 	if !utils.SlicesAreEqual(slice.Ordered, slice.Disordered) {
@@ -14,11 +14,11 @@ func Sort(name string, sort func([]int), t *testing.T) {
 	}
 }
 
-func createIntSlice() SliceData {
-	ordered := utils.GenOrderedSlice(10000)
+func createIntSlice(size int) SliceData {
+	ordered := utils.GenerateOrderedSlice(size)
 	return SliceData{
 		Ordered:    ordered,
-		Disordered: utils.GenStirredSlice(ordered),
+		Disordered: utils.ShuffleSlice(ordered),
 	}
 }
 

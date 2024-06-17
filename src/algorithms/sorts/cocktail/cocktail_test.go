@@ -6,6 +6,16 @@ import (
 	"testing"
 )
 
-func TestCocktailSort(t *testing.T) {
-	test.Sort("Cocktail", cocktail.Sort, t)
+const sortType = "Cocktail"
+
+func TestCocktailSortWith10kElements(t *testing.T) {
+	test.Sort(sortType, 10000, cocktail.Sort, t)
+}
+
+func TestCocktailSortWithOneElement(t *testing.T) {
+	test.Sort(sortType, 10000, cocktail.Sort, t)
+}
+
+func TestCocktailSortWithZeroElements(t *testing.T) {
+	test.Sort(sortType, 10000, cocktail.Sort, t)
 }

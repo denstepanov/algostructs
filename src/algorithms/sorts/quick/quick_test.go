@@ -8,8 +8,8 @@ import (
 )
 
 func TestQuickSort(t *testing.T) {
-	ordered := utils.GenOrderedSlice(100000)
-	slice := utils.GenStirredSlice(ordered)
+	ordered := utils.GenerateOrderedSlice(100000)
+	slice := utils.ShuffleSlice(ordered)
 
 	quick.Sort(slice, 0, len(slice)-1)
 

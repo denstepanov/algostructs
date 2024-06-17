@@ -6,6 +6,16 @@ import (
 	"testing"
 )
 
-func TestInsertionSort(t *testing.T) {
-	test.Sort("Insertion", insertion.Sort, t)
+const sortType = "Insertion"
+
+func TestInsertionSortWith10kElements(t *testing.T) {
+	test.Sort(sortType, 10000, insertion.Sort, t)
+}
+
+func TestInsertionSortWithOneElement(t *testing.T) {
+	test.Sort(sortType, 1, insertion.Sort, t)
+}
+
+func TestInsertionSortWithZeroElements(t *testing.T) {
+	test.Sort(sortType, 0, insertion.Sort, t)
 }

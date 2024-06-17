@@ -7,7 +7,7 @@ import (
 )
 
 func TestBinarySearch(t *testing.T) {
-	ordered := utils.GenOrderedSlice(10000)
+	ordered := utils.GenerateOrderedSlice(10000)
 	elem := 734
 
 	result := binary.Search(ordered, 0, len(ordered)-1, ordered[elem])
