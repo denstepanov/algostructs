@@ -21,7 +21,7 @@ func prepare() *stacks.StacksQueue[int] {
 
 func TestEnqueue(t *testing.T) {
 	if queue.IsEmpty() {
-		t.Fatal(fmt.Printf("StacksQueue.Enqueue() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("StacksQueue.Enqueue() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -30,7 +30,7 @@ func TestDequeue(t *testing.T) {
 	queue.Dequeue()
 
 	if queue.Len() == oldLen {
-		t.Fatal(fmt.Printf("StacksQueue.Dequeue() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("StacksQueue.Dequeue() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -39,6 +39,6 @@ func TestPeek(t *testing.T) {
 	queue.Peek()
 
 	if queue.Len() != oldLen {
-		t.Fatal(fmt.Printf("StacksQueue.Peek() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("StacksQueue.Peek() %s", utils.MethodDoesNotWork))
 	}
 }

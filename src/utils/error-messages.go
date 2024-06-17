@@ -1,3 +1,3 @@
 package utils
 
-const MethodNotWorking = "method isn't working correctly."
+const MethodDoesNotWork = "method doesn't work correctly."

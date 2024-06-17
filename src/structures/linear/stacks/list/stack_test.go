@@ -22,7 +22,7 @@ func prepare() *list.ListStack[string] {
 
 func TestLen(t *testing.T) {
 	if stack.Len() == 0 {
-		t.Fatal(fmt.Printf("ListStack.Len() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListStack.Len() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -31,7 +31,7 @@ func TestPush(t *testing.T) {
 	stack.Push("Another string")
 
 	if stack.Len() == oldLen {
-		t.Fatal(fmt.Printf("ListStack.Push() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListStack.Push() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -40,6 +40,6 @@ func TestPop(t *testing.T) {
 	stack.Pop()
 
 	if stack.Len() == oldLen {
-		t.Fatal(fmt.Printf("ListStack.Pop() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListStack.Pop() %s", utils.MethodDoesNotWork))
 	}
 }

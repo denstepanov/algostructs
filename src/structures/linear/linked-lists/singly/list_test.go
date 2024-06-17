@@ -41,7 +41,7 @@ func TestFindByIndex(t *testing.T) {
 	node := list.FindByIndex(3)
 
 	if node != list.Tail() {
-		t.Fatal(fmt.Printf("SLList.FindByIndex() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.FindByIndex() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -49,13 +49,13 @@ func TestFindByValue(t *testing.T) {
 	nodes := list.FindByValue("Mars")
 
 	if nodes[0] != list.Tail() {
-		t.Fatal(fmt.Printf("SLList.FindByValue() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.FindByValue() %s", utils.MethodDoesNotWork))
 	}
 }
 
 func TestInsertTail(t *testing.T) {
 	if list.Len() == 0 {
-		t.Fatal(fmt.Printf("SLList.InsertTail() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.InsertTail() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -63,7 +63,7 @@ func TestClear(t *testing.T) {
 	list.Clear()
 
 	if !list.IsEmpty() {
-		t.Fatal(fmt.Printf("SLList.Clear() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.Clear() %s", utils.MethodDoesNotWork))
 	}
 
 }
@@ -72,7 +72,7 @@ func TestToSlice(t *testing.T) {
 	listAsSlice := list.ToSlice()
 
 	if len(listAsSlice) != list.Len() {
-		t.Fatal(fmt.Printf("SLList.ToSlice() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.ToSlice() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -105,7 +105,7 @@ func TestInsertBefore(t *testing.T) {
 	newNode = list.InsertBefore(list.Tail(), newNode)
 
 	if list.Len() == oldLen {
-		t.Fatal(fmt.Printf("SLList.InsertBefore() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.InsertBefore() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -115,7 +115,7 @@ func TestInsertAfter(t *testing.T) {
 	newNode = list.InsertAfter(list.Tail(), newNode)
 
 	if list.Len() == oldLen {
-		t.Fatal(fmt.Printf("SLList.InsertAfter() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.InsertAfter() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -153,6 +153,6 @@ func TestReverse(t *testing.T) {
 	list.Reverse()
 
 	if list.Head() != oldTail && list.Tail() != oldHead {
-		t.Fatal(fmt.Printf("SLList.Reverse() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SLList.Reverse() %s", utils.MethodDoesNotWork))
 	}
 }

@@ -22,7 +22,7 @@ func prepare() *slice.SliceStack[string] {
 
 func TestLen(t *testing.T) {
 	if sliceStack.Len() == 0 {
-		t.Fatal(fmt.Printf("SliceStack.Len() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SliceStack.Len() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -31,7 +31,7 @@ func TestPush(t *testing.T) {
 	sliceStack.Push("Another string")
 
 	if sliceStack.Len() == oldLen {
-		t.Fatal(fmt.Printf("SliceStack.Push() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SliceStack.Push() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -40,6 +40,6 @@ func TestPop(t *testing.T) {
 	sliceStack.Pop()
 
 	if sliceStack.Len() == oldLen {
-		t.Fatal(fmt.Printf("SliceStack.Pop() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("SliceStack.Pop() %s", utils.MethodDoesNotWork))
 	}
 }

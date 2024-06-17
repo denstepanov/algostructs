@@ -21,7 +21,7 @@ func prepare() *list.ListQueue[int] {
 
 func TestEnqueue(t *testing.T) {
 	if queue.IsEmpty() {
-		t.Fatal(fmt.Printf("ListQueue.Enqueue() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListQueue.Enqueue() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -30,7 +30,7 @@ func TestDequeue(t *testing.T) {
 	queue.Dequeue()
 
 	if queue.Len() == oldLen {
-		t.Fatal(fmt.Printf("ListQueue.Dequeue() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListQueue.Dequeue() %s", utils.MethodDoesNotWork))
 	}
 }
 
@@ -39,6 +39,6 @@ func TestPeek(t *testing.T) {
 	queue.Peek()
 
 	if queue.Len() != oldLen {
-		t.Fatal(fmt.Printf("ListQueue.Peek() %s", utils.MethodNotWorking))
+		t.Fatal(fmt.Printf("ListQueue.Peek() %s", utils.MethodDoesNotWork))
 	}
 }
