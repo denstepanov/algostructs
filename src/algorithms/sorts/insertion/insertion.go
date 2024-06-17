@@ -1,5 +1,7 @@
 package insertion
 
+import "github.com/denstepanov/algostructs/src/utils"
+
 // Лучший случай O(n)
 // Средний случай O(n^2)
 // Худший случай O(n^2)
@@ -16,7 +18,7 @@ func Sort(s []int) {
 		// Т.е. пробегаем левый массив в обратном порядке, меняя элементы местами, если предыдущий элемент больше текущего.
 		for current := divider; current > 0; current-- {
 			if s[current] < s[current-1] {
-				s[current], s[current-1] = s[current-1], s[current]
+				utils.Swap(s, current, current-1)
 			}
 		}
 	}

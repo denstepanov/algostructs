@@ -1,5 +1,7 @@
 package shell
 
+import "github.com/denstepanov/algostructs/src/utils"
+
 // Средний случай O(n log n)
 // Худший случай O(n^2)
 func Sort(s []int) {
@@ -11,7 +13,7 @@ func Sort(s []int) {
 			// Групп может быть от двух и больше.
 			// В конце сортировка переходит в сортировку вставками.
 			for j := i; j >= step && s[j-step] > s[j]; j -= step {
-				s[j-step], s[j] = s[j], s[j-step]
+				utils.Swap(s, j-step, j)
 			}
 		}
 	}

@@ -1,5 +1,8 @@
 package quick
 
+import "github.com/denstepanov/algostructs/src/utils"
+
+// TODO: Придумать обёртку сортировки, чтобы была возможность переиспользовать общие методы для тестов
 // Сильно модифицированная версия пузырьковой сортировки.
 // Лучший и средний случай O(n log n).
 // Худший случай O(n^2). Массив частично упорядочен.
@@ -21,6 +24,6 @@ func partition(s []int, low, high int) int {
 			pointer++
 		}
 	}
-	s[pointer], s[pivot] = s[pivot], s[pointer]
+	utils.Swap(s, pointer, pivot)
 	return pointer
 }

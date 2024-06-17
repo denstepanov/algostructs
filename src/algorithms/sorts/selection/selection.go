@@ -1,5 +1,7 @@
 package selection
 
+import "github.com/denstepanov/algostructs/src/utils"
+
 // Во всех случаях O(n^2)
 func Sort(s []int) {
 	for start := 0; start < len(s)-1; start++ {
@@ -9,6 +11,6 @@ func Sort(s []int) {
 				minValueIndex = i
 			}
 		}
-		s[start], s[minValueIndex] = s[minValueIndex], s[start]
+		utils.Swap(s, start, minValueIndex)
 	}
 }

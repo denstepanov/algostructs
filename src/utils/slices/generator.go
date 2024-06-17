@@ -1,4 +1,4 @@
-package utils
+package slices
 
 import (
 	"math/rand"
@@ -15,7 +15,7 @@ func ShuffleSlice(s []int) []int {
 	return list
 }
 
-func GenerateOrderedSlice(size int) []int {
+func CreateOrderedUniqueSlice(size int) []int {
 	list := make([]int, size)
 	for i := 0; i < size; i++ {
 		list[i] = i

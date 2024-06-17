@@ -1,5 +1,7 @@
 package cocktail
 
+import "github.com/denstepanov/algostructs/src/utils"
+
 // Усовершенствованный вариант пузырьковой сортировки.
 // Лучший случай O(n). Срез отсортирован.
 // Средний случай O(n^2).
@@ -11,7 +13,7 @@ func Sort(s []int) {
 		swaps := 0
 		for i := start; i < end; i++ {
 			if s[i] > s[i+1] {
-				s[i], s[i+1] = s[i+1], s[i]
+				utils.Swap(s, i, i+1)
 				swaps++
 			}
 		}
@@ -23,7 +25,7 @@ func Sort(s []int) {
 
 		for i := end; i > start; i-- {
 			if s[i] < s[i-1] {
-				s[i], s[i-1] = s[i-1], s[i]
+				utils.Swap(s, i, i-1)
 				swaps++
 			}
 		}

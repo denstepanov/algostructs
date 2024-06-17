@@ -1,6 +1,6 @@
-package utils
+package slices
 
-func SlicesAreEqual[T comparable](a, b []T) bool {
+func AreEqual[T comparable](a, b []T) bool {
 	result := true
 	for i, v := range a {
 		if v != b[i] {

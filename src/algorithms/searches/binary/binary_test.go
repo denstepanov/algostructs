@@ -2,12 +2,12 @@ package binary_test
 
 import (
 	"github.com/denstepanov/algostructs/src/algorithms/searches/binary"
-	"github.com/denstepanov/algostructs/src/utils"
+	"github.com/denstepanov/algostructs/src/utils/slices"
 	"testing"
 )
 
 func TestBinarySearch(t *testing.T) {
-	ordered := utils.GenerateOrderedSlice(10000)
+	ordered := slices.CreateOrderedUniqueSlice(10000)
 	elem := 734
 
 	result := binary.Search(ordered, 0, len(ordered)-1, ordered[elem])

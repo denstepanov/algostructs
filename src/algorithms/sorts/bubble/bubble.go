@@ -1,5 +1,7 @@
 package bubble
 
+import "github.com/denstepanov/algostructs/src/utils"
+
 /*
  * Пузырьковая сортировка.
  * Лучший случай: O(n). Последовательность уже упорядочена.
@@ -13,7 +15,7 @@ func Sort(s []int) {
 		swaps := 0
 		for left, right := 0, 1; right <= end; left, right = left+1, right+1 {
 			if s[left] > s[right] {
-				s[left], s[right] = s[right], s[left]
+				utils.Swap(s, left, right)
 				swaps++
 			}
 		}
