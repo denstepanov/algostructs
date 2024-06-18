@@ -1,3 +1,3 @@
-# algostructs
+# Algostructs
 
-Playground, which contains algorithms, structures and other solves of problems.
+Sandbox with lots of data structures, implemented algorithms and solved problems.
