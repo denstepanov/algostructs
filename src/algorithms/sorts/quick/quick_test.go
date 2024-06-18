@@ -11,7 +11,7 @@ func TestQuickSort(t *testing.T) {
 	ordered := slices.CreateOrderedUniqueSlice(100000)
 	slice := slices.ShuffleSlice(ordered)
 
-	quick.Sort(slice, 0, len(slice)-1)
+	quick.Sort(slice)
 
 	if !slices.AreEqual(ordered, slice) {
 		t.Fatal("Quick sort doesn't work correctly.")

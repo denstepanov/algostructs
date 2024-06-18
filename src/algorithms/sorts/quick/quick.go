@@ -2,15 +2,18 @@ package quick
 
 import "github.com/denstepanov/algostructs/src/utils"
 
-// TODO: Придумать обёртку сортировки, чтобы была возможность переиспользовать общие методы для тестов
 // Сильно модифицированная версия пузырьковой сортировки.
 // Лучший и средний случай O(n log n).
 // Худший случай O(n^2). Массив частично упорядочен.
-func Sort(s []int, low, high int) {
+func Sort(s []int) {
+	sort(s, 0, len(s)-1)
+}
+
+func sort(s []int, low, high int) {
 	if low < high {
 		pointer := partition(s, low, high)
-		Sort(s, low, pointer-1)
-		Sort(s, pointer+1, high)
+		sort(s, low, pointer-1)
+		sort(s, pointer+1, high)
 	}
 }
 
