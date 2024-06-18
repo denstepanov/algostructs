@@ -1,12 +1,12 @@
 package test
 
-import "github.com/denstepanov/algostructs/src/utils/slices"
+import "github.com/denstepanov/algostructs/src/util/slice"
 
 func createIntSlice(size int) SliceData {
-	ordered := slices.CreateOrderedUniqueSlice(size)
+	ordered := slice.CreateOrderedUniqueSlice(size)
 	return SliceData{
 		Ordered:    ordered,
-		Disordered: slices.ShuffleSlice(ordered),
+		Disordered: slice.ShuffleSlice(ordered),
 	}
 }
 

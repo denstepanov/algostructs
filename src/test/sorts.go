@@ -1,8 +1,7 @@
 package test
 
 import (
-	"github.com/denstepanov/algostructs/src/utils"
-	"github.com/denstepanov/algostructs/src/utils/slices"
+	"github.com/denstepanov/algostructs/src/util"
 	"testing"
 )
 
@@ -11,7 +10,7 @@ func Sort(name string, sliceSize int, sort func([]int), t *testing.T) {
 	slice := createIntSlice(sliceSize)
 	sort(slice.Disordered)
 
-	if !slices.AreEqual(slice.Ordered, slice.Disordered) {
-		t.Fatalf("%s sort %s", name, utils.MethodDoesNotWork)
+	if !slice.AreEqual(slice.Ordered, slice.Disordered) {
+		t.Fatalf("%s sort %s", name, util.MethodDoesNotWork)
 	}
 }
