@@ -1,33 +1,33 @@
-package list
+package linked_list
 
 import (
 	"github.com/denstepanov/algostructs/src/structures/linear/linked-lists/doubly"
 )
 
-type ListQueue[T comparable] struct {
-	list doubly.List[T]
+type Queue[T comparable] struct {
+	list doubly.LinkedList[T]
 }
 
-func New[T comparable]() *ListQueue[T] {
-	return new(ListQueue[T])
+func New[T comparable]() *Queue[T] {
+	return new(Queue[T])
 }
 
-func (q *ListQueue[T]) IsEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	return q.list.IsEmpty()
 }
 
-func (q *ListQueue[T]) Len() int {
+func (q *Queue[T]) Len() int {
 	return q.list.Len()
 }
 
-func (q *ListQueue[T]) Enqueue(item T) {
+func (q *Queue[T]) Enqueue(item T) {
 	node := &doubly.Node[T]{
 		Value: item,
 	}
 	q.list.InsertHead(node)
 }
 
-func (q *ListQueue[T]) Dequeue() T {
+func (q *Queue[T]) Dequeue() T {
 	var result T
 	if !q.list.IsEmpty() {
 		result = q.list.DeleteTail().Value
@@ -35,7 +35,7 @@ func (q *ListQueue[T]) Dequeue() T {
 	return result
 }
 
-func (q *ListQueue[T]) Peek() T {
+func (q *Queue[T]) Peek() T {
 	var result T
 	if !q.list.IsEmpty() {
 		tail := q.list.DeleteTail()

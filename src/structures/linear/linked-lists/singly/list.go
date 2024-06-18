@@ -3,7 +3,7 @@ package singly
 type Node[T comparable] struct {
 	Value T
 	next  *Node[T]
-	list  *List[T]
+	list  *LinkedList[T]
 }
 
 func (n *Node[T]) clearNode() {
@@ -11,24 +11,24 @@ func (n *Node[T]) clearNode() {
 	n.next = nil
 }
 
-type List[T comparable] struct {
+type LinkedList[T comparable] struct {
 	head, tail *Node[T]
 	len        int
 }
 
-func New[T comparable]() *List[T] {
-	return new(List[T])
+func New[T comparable]() *LinkedList[T] {
+	return new(LinkedList[T])
 }
 
-func (l *List[T]) Len() int {
+func (l *LinkedList[T]) Len() int {
 	return l.len
 }
 
-func (l *List[T]) IsEmpty() bool {
+func (l *LinkedList[T]) IsEmpty() bool {
 	return l.Len() == 0
 }
 
-func (l *List[T]) Clear() {
+func (l *LinkedList[T]) Clear() {
 	if l.Len() > 0 {
 		node := l.head
 		for i := 0; i < l.Len(); i++ {
@@ -42,15 +42,15 @@ func (l *List[T]) Clear() {
 	}
 }
 
-func (l *List[T]) Head() *Node[T] {
+func (l *LinkedList[T]) Head() *Node[T] {
 	return l.head
 }
 
-func (l *List[T]) Tail() *Node[T] {
+func (l *LinkedList[T]) Tail() *Node[T] {
 	return l.tail
 }
 
-func (l *List[T]) FindByIndex(idx int) *Node[T] {
+func (l *LinkedList[T]) FindByIndex(idx int) *Node[T] {
 	if l.Len()-1 < idx {
 		return nil
 	}
@@ -65,8 +65,8 @@ func (l *List[T]) FindByIndex(idx int) *Node[T] {
 	return node
 }
 
-func (l *List[T]) FindByValue(value T) []*Node[T] {
-	result := []*Node[T]{}
+func (l *LinkedList[T]) FindByValue(value T) []*Node[T] {
+	var result []*Node[T]
 	if !l.IsEmpty() {
 		node := l.head
 		for i := 0; i <= l.len-1; i++ {
@@ -79,7 +79,7 @@ func (l *List[T]) FindByValue(value T) []*Node[T] {
 	return result
 }
 
-func (l *List[T]) InsertHead(newNode *Node[T]) *Node[T] {
+func (l *LinkedList[T]) InsertHead(newNode *Node[T]) *Node[T] {
 	newNode.next = l.Head()
 	newNode.list = l
 	l.head = newNode
@@ -92,7 +92,7 @@ func (l *List[T]) InsertHead(newNode *Node[T]) *Node[T] {
 	return newNode
 }
 
-func (l *List[T]) InsertTail(newNode *Node[T]) *Node[T] {
+func (l *LinkedList[T]) InsertTail(newNode *Node[T]) *Node[T] {
 	newNode.list = l
 
 	if l.IsEmpty() {
@@ -106,7 +106,7 @@ func (l *List[T]) InsertTail(newNode *Node[T]) *Node[T] {
 	return newNode
 }
 
-func (l *List[T]) InsertBefore(target, newNode *Node[T]) *Node[T] {
+func (l *LinkedList[T]) InsertBefore(target, newNode *Node[T]) *Node[T] {
 	if target.list != l {
 		return nil
 	}
@@ -131,7 +131,7 @@ func (l *List[T]) InsertBefore(target, newNode *Node[T]) *Node[T] {
 	return newNode
 }
 
-func (l *List[T]) InsertAfter(target, newNode *Node[T]) *Node[T] {
+func (l *LinkedList[T]) InsertAfter(target, newNode *Node[T]) *Node[T] {
 	if target.list != l {
 		return nil
 	}
@@ -147,7 +147,7 @@ func (l *List[T]) InsertAfter(target, newNode *Node[T]) *Node[T] {
 	return newNode
 }
 
-func (l *List[T]) DeleteHead() *Node[T] {
+func (l *LinkedList[T]) DeleteHead() *Node[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -168,7 +168,7 @@ func (l *List[T]) DeleteHead() *Node[T] {
 	return node
 }
 
-func (l *List[T]) DeleteTail() *Node[T] {
+func (l *LinkedList[T]) DeleteTail() *Node[T] {
 	if l.IsEmpty() {
 		return nil
 	}
@@ -192,7 +192,7 @@ func (l *List[T]) DeleteTail() *Node[T] {
 	return node
 }
 
-func (l *List[T]) Delete(target *Node[T]) *Node[T] {
+func (l *LinkedList[T]) Delete(target *Node[T]) *Node[T] {
 	if target.list != l {
 		return nil
 	}
@@ -226,7 +226,7 @@ func (l *List[T]) Delete(target *Node[T]) *Node[T] {
 	return target
 }
 
-func (l *List[T]) Reverse() {
+func (l *LinkedList[T]) Reverse() {
 	if !l.IsEmpty() {
 		next := l.head.next
 		current := l.head
@@ -246,8 +246,8 @@ func (l *List[T]) Reverse() {
 	}
 }
 
-func (l *List[T]) ToSlice() []T {
-	result := []T{}
+func (l *LinkedList[T]) ToSlice() []T {
+	var result []T
 	if !l.IsEmpty() {
 		node := l.head
 		for i := 0; i < l.Len(); i++ {
@@ -259,6 +259,6 @@ func (l *List[T]) ToSlice() []T {
 	return result
 }
 
-func (l *List[T]) isOnlyOneNode() bool {
+func (l *LinkedList[T]) isOnlyOneNode() bool {
 	return l.Len() == 1
 }

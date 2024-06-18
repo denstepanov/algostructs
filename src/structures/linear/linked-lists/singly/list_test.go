@@ -13,7 +13,7 @@ import (
 // - удаления элементов из середины списка
 var list = prepare()
 
-func prepare() *singly.List[string] {
+func prepare() *singly.LinkedList[string] {
 	newList := singly.New[string]()
 	data := []singly.Node[string]{
 		{

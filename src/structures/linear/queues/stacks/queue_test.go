@@ -10,7 +10,7 @@ import (
 
 var queue = prepare()
 
-func prepare() *stacks.StacksQueue[int] {
+func prepare() *stacks.Queue[int] {
 	queue := stacks.New[int]()
 	data := []int{3, 541, 300}
 	for _, v := range data {

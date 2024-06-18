@@ -13,7 +13,7 @@ import (
 // - удаления элементов из середины списка
 var list = prepare()
 
-func prepare() *doubly.List[string] {
+func prepare() *doubly.LinkedList[string] {
 	newList := doubly.New[string]()
 	data := []doubly.Node[string]{
 		{

@@ -1,20 +1,20 @@
 package slice
 
-type SliceStack[T comparable] []T
+type Stack[T comparable] []T
 
-func (s *SliceStack[T]) Len() int {
+func (s *Stack[T]) Len() int {
 	return len(*s)
 }
 
-func (s *SliceStack[T]) IsEmpty() bool {
+func (s *Stack[T]) IsEmpty() bool {
 	return s.Len() == 0
 }
 
-func (s *SliceStack[T]) Push(item T) {
+func (s *Stack[T]) Push(item T) {
 	*s = append(*s, item)
 }
 
-func (s *SliceStack[T]) Pop() T {
+func (s *Stack[T]) Pop() T {
 	var result T
 	if !s.IsEmpty() {
 		index := len(*s) - 1

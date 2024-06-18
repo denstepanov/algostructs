@@ -10,8 +10,8 @@ import (
 
 var sliceStack = prepare()
 
-func prepare() *slice.SliceStack[string] {
-	var stack slice.SliceStack[string]
+func prepare() *slice.Stack[string] {
+	var stack slice.Stack[string]
 
 	data := []string{"this", "is", "Sparta"}
 	for _, v := range data {

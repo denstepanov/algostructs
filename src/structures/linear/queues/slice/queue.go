@@ -1,20 +1,20 @@
 package slice
 
-type SliceQueue[T comparable] []T
+type Queue[T comparable] []T
 
-func New[T comparable]() *SliceQueue[T] {
-	return new(SliceQueue[T])
+func New[T comparable]() *Queue[T] {
+	return new(Queue[T])
 }
 
-func (q *SliceQueue[T]) Len() int {
+func (q *Queue[T]) Len() int {
 	return len(*q)
 }
 
-func (q *SliceQueue[T]) IsEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	return q.Len() == 0
 }
 
-func (q *SliceQueue[T]) Enqueue(item T) {
+func (q *Queue[T]) Enqueue(item T) {
 	newQueue := []T{item}
 	if !q.IsEmpty() {
 		newQueue = append(newQueue, *q...)
@@ -22,7 +22,7 @@ func (q *SliceQueue[T]) Enqueue(item T) {
 	*q = newQueue
 }
 
-func (q *SliceQueue[T]) Dequeue() T {
+func (q *Queue[T]) Dequeue() T {
 	var result T
 	if !q.IsEmpty() {
 		index := len(*q) - 1
@@ -32,7 +32,7 @@ func (q *SliceQueue[T]) Dequeue() T {
 	return result
 }
 
-func (q *SliceQueue[T]) Peek() T {
+func (q *Queue[T]) Peek() T {
 	var result T
 	if !q.IsEmpty() {
 		result = (*q)[len(*q)-1]

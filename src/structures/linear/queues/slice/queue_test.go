@@ -10,7 +10,7 @@ import (
 
 var queue = prepare()
 
-func prepare() *slice.SliceQueue[int] {
+func prepare() *slice.Queue[int] {
 	queue := slice.New[int]()
 	data := []int{3, 541, 300}
 	for _, v := range data {

@@ -6,7 +6,7 @@ import (
 )
 
 func RunIsPalindrome(word string) {
-	fmt.Printf("\nIs this word '%s' a polindrome? %v", word, reverse.IsPalindrome(word))
+	fmt.Printf("\nIs word '%s' a polindrome? %v", word, reverse.IsPalindrome(word))
 }
 
 func RunReverseString(word string) {

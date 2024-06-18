@@ -27,7 +27,7 @@ func IsSliceOfStringPalindrome(slice []string) bool {
 }
 
 func ReverseString(str string) string {
-	if str == "" {
+	if len(str) == 0 {
 		return str
 	}
 	return string(reverse([]rune(str)))
