@@ -1,13 +1,13 @@
 package main
 
-import "github.com/denstepanov/algostructs/src/other"
+import "github.com/denstepanov/algostructs/src/problems"
 
 func main() {
 	runOthers()
 }
 
 func runOthers() {
-	other.RunReverseString("Hello World!")
-	other.RunReverseSlice([]string{"Hello", ",", "World", "!"})
-	other.RunIsPalindrome("kayak")
+	problems.RunReverseString("Hello World!")
+	problems.RunReverseSlice([]string{"Hello", ",", "World", "!"})
+	problems.RunIsPalindrome("kayak")
 }

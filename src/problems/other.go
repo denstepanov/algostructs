@@ -1,8 +1,8 @@
-package other
+package problems
 
 import (
 	"fmt"
-	"github.com/denstepanov/algostructs/src/other/reverse"
+	"github.com/denstepanov/algostructs/src/problems/reverse"
 )
 
 func RunIsPalindrome(word string) {
