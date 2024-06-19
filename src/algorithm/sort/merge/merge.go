@@ -1,9 +1,18 @@
 package merge
 
-// TODO: Разобраться в сортировке слиянием!!! Никогда её не понимал толком.
-// Во всех случаях O(n log n)
+// TODO: Подумать над in-place вариантом (без использования дополнительного массива)
+/*
+ * Быстрая сортировка слиянием
+ *
+ * Деление массива на две части. Затем деление частей на части до тех пор, пока изначальный массив не будет покрошен на отдельные элементы.
+ * Затем эти элементы начинаем собирать.
+ * Как только массивы будут собраны, следует проводить слияние следующих пар массивов, до тех пор пока не придём к итоговому массиву.
+ *
+ * Во всех случаях O(n log n)
+ */
 func Sort(s []int) {
 	sorted := sort(s)
+	// Замена элементов исходного массива на значения из отсортированного массива.
 	for i := range s {
 		s[i] = sorted[i]
 	}
@@ -33,6 +42,7 @@ func merge(left []int, right []int) []int {
 
 	for i := 0; i < totalLen; i++ {
 		if leftPointer < leftLen && rightPointer < rightLen {
+			// Сравнение элементов из массивов и перемещение наименьшего значения в result.
 			if left[leftPointer] > right[rightPointer] {
 				result = append(result, right[rightPointer])
 				rightPointer++
@@ -40,6 +50,7 @@ func merge(left []int, right []int) []int {
 				result = append(result, left[leftPointer])
 				leftPointer++
 			}
+			// Закидывание оставшихся элементов из массивов.
 		} else if rightPointer < rightLen {
 			result = append(result, right[rightPointer])
 			rightPointer++

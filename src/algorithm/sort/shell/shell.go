@@ -2,13 +2,17 @@ package shell
 
 import "github.com/denstepanov/algostructs/src/util"
 
-// Средний случай O(n log n)
-// Худший случай O(n^2)
+/*
+ * Сортировка Шелла
+ *
+ * Средний случай O(n log n)
+ * Худший случай O(n^2)
+ */
 func Sort(s []int) {
-	len := len(s)
-	for step := len / 2; step > 0; step /= 2 {
+	length := len(s)
+	for step := length / 2; step > 0; step /= 2 {
 		// Проход по элементам в рамках заданного шага.
-		for i := step; i < len; i++ {
+		for i := step; i < length; i++ {
 			// Сортировка элементов в рамках одной группы.
 			// Групп может быть от двух и больше.
 			// В конце сортировка переходит в сортировку вставками.
