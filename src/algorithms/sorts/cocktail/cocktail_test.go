@@ -1,7 +1,7 @@
 package cocktail_test
 
 import (
-	"github.com/denstepanov/algostructs/src/algorithm/sorts/cocktail"
+	"github.com/denstepanov/algostructs/src/algorithms/sorts/cocktail"
 	"github.com/denstepanov/algostructs/src/test"
 	"testing"
 )

@@ -4,7 +4,7 @@ import (
 	"github.com/denstepanov/algostructs/src/util/slices"
 	"testing"
 
-	"github.com/denstepanov/algostructs/src/algorithm/sorts/quick"
+	"github.com/denstepanov/algostructs/src/algorithms/sorts/quick"
 )
 
 func TestQuickSort(t *testing.T) {

@@ -1,7 +1,7 @@
 package binary_test
 
 import (
-	"github.com/denstepanov/algostructs/src/algorithm/searches/binary"
+	"github.com/denstepanov/algostructs/src/algorithms/searches/binary"
 	"github.com/denstepanov/algostructs/src/util/slices"
 	"testing"
 )

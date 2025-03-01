@@ -4,7 +4,7 @@ import (
 	"github.com/denstepanov/algostructs/src/test"
 	"testing"
 
-	"github.com/denstepanov/algostructs/src/algorithm/sorts/merge"
+	"github.com/denstepanov/algostructs/src/algorithms/sorts/merge"
 )
 
 const sortType = "Merge"
