@@ -1,15 +1,15 @@
 package test
 
-import "github.com/denstepanov/algostructs/src/util/slice"
+import "github.com/denstepanov/algostructs/src/util/slices"
 
-func createIntSlice(size int) SliceData {
-	ordered := slice.CreateOrderedUniqueSlice(size)
-	return SliceData{
+func createIntSlice(size int) SliceStruct {
+	ordered := slices.CreateOrderedUniqueSlice(size)
+	return SliceStruct{
 		Ordered:    ordered,
-		Disordered: slice.ShuffleSlice(ordered),
+		Disordered: slices.ShuffleSlice(ordered),
 	}
 }
 
-type SliceData struct {
+type SliceStruct struct {
 	Ordered, Disordered []int
 }
